@@ -6,7 +6,7 @@ BeLive SDK is an end-to-end live streaming solution with ready-made UI and conte
 
 ## SDK Architecture
 
-![SDK Architecture](images/sdk_architecture_v1.0.png)
+![SDK Architecture](images/architecture_overview.png)
 
 ## API Flow Diagram
 
