@@ -5,7 +5,7 @@ Simple and easy way to use BeLive Web SDK is by deploying docker image on your i
 ## How to load and run Docker Image
 
 1. Install docker from [https://docs.docker.com/docker-for-mac/install/](https://docs.docker.com/docker-for-mac/install/) (Mac Version)
-2. Download Web docker image (Web folder) from Google drive link. Unzip it, you will find web-sdk.tar file [Note : Contact Business team to get Drive link]
+2. Download Web docker image (Web folder) from Google drive link. Unzip it, you will find web-sdk.tar file. Contact our [Business team](https://www.tech.belive.sg/contact-us) for Google drive link
 3. Open a command-line terminal and change directory to same with `web-sdk.tar` file. Run following command to load docker
 
 ```bash
