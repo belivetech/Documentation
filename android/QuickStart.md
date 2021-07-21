@@ -571,15 +571,23 @@ Find below a list of callback methods.
 
 ```kotlin
 interface BlsLiveStreamCallback {
+     /*obs*/
+    fun onObsCreated(slug: String)
+
     fun onStartStreamSuccess(slug: String)  // for host. User has started stream
+    fun onDuration(duration: Long) // current duration of the stream
     fun onJoinStreamSuccess() // for viewer only. User has joined stream
     fun onStreamError(reason: Int) // for both host and viewer
-    fun onJoinChatSuccess(channelId: String) // for both host and viewer. User has joined chat channel
-    fun onJoinChatError(reason: Int)  // for both host and viewer
     fun onStatistics(statistics: BlsLiveStreamStatistics) // for both host and viewer. Update of view count and like count.
     fun onShareStream(shareTo: Int) // for both host and viewer
     fun onEndStreamSuccess(slug: String, statistics: BlsLiveStreamStatistics) // for host only. User has ended live stream
-    fun onSaveStream(isSaved: Boolean) // for host only. User has saved live stream
+    fun onEndStreamError(code: Int, message: String) // for host only. Host has failed to end live stream
+    fun onSaveStream(isSaved: Boolean) // for host only. Host has saved live stream
+    fun onSaveStreamError(code: Int, message: String) // for host only. Host has failed to save live stream
+    fun onStartStreamSuccess(slug: String) // for host only.
+    fun onStartStreamError(code: Int, message: String) // for host only. Failed to start stream
+    fun onViewerJoined(it: List<ViewerInfo>)
+    fun onViewerLeft(it: ViewerInfo)
 }
 ```
 
