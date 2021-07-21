@@ -40,7 +40,7 @@ SDK Package contains following core components
 - CMS Server docker container easy deployment
 - Database Tables and config for easy setup on MySQL server
 - Chat Server docker container for easy deployment
-- Wowza scripts for easy deployment
+- Streaming engine scripts for easy deployment
 
 ### Mobile Apps
 
@@ -53,7 +53,7 @@ SDK Package contains following core components
 - Javascript plugin for custom UI integration in your existing Web App
 
 ## Ready-made UI
-Our SDK provides ready-to-use live stream UI for any mobile device screen size. We provide customization option as per client's need and usage. Refer to below screenshots 
+Our SDK provides ready-to-use live stream UI for any mobile device screen size. We provide customization option as per client's need and usage. Refer to below screenshots for example UI/UX.
 
 ![Live Stream UI](images/live_screen_ui.png)
 
