@@ -1,6 +1,8 @@
 # Quick Start
 This quick start shows a brief overview of the BeLive SDK's structure and features, then goes through the steps of integrating the BeLive SDK in your own project.
 
+> Note : Throughout this document we will refer `host` or `broadcaster` term alternatively for referring to feature where user can start live stream. Similary, we will refer `viewer` or `watcher` alternatively for user who is watching live or recorded stream.
+
 ## Sample App
 
 Our sample application demonstrates the capabilities and core features of the BeLive SDK for Android. It is provided for developer educational purposes. Contact our [Business team](https://www.tech.belive.sg/contact-us) for source code. You can use it as starting point for building new app. 
@@ -8,7 +10,7 @@ Our sample application demonstrates the capabilities and core features of the Be
 ## Requirements 
 
 - BeLive SDK **aar** and **so** files  (In Sample app they are located in `app/libs` and `app/src/main/jniLibs/`folder)
-- Latest version of Android Studio (3.6 as of today)
+- Latest version of Android Studio (4.2 as of today)
 - `Android 4.4 and above` (API Level 19 or later)
 - `Java 8`
 
@@ -34,6 +36,8 @@ repositories {
 
 App level `build.gradle`
 
+For both **Host and Viewer**, add following aar files.
+
 ```gradle
 dependencies {
     // sdk aar files
@@ -44,42 +48,183 @@ dependencies {
 }
 
 ```
+For **Host** only, you can exclude `beliveplayer-release` aar library but for `Viewer` implementation, you will need all three `aar` libraries.
+
+
 BeLive Android SDK is using open source libraries. Add following depdendcies to app level `build.gradle`
+
+**Host and Viewer**
 
 ```gradle
 dependencies {
-    // coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
 
-    // lifecycle
+    // Common libraries for both host and viewer
+
+    // coroutines : Use for Async tasks
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6"
+
+    //dependency injection koin
+    api 'org.koin:koin-androidx-scope:2.1.5'
+    api 'org.koin:koin-androidx-viewmodel:2.1.5'
+
+    // lifecycle : For lifecycle aware components
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc02"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02"
 
-    // retrofit
+    // retrofit : Type safe HTTP client for Android
     implementation "com.squareup.retrofit2:retrofit:2.6.1"
     implementation "com.squareup.retrofit2:converter-gson:2.6.1"
     implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
-    // Streamer
-    implementation 'com.ksyun.media:libksylive-java:3.0.4'
-    implementation 'com.ksyun.media:libksylive-armv7a:3.0.4'
-    implementation "com.ksyun.media:libksylive-arm64:3.0.2"
-    implementation "com.ksyun.media:libksylive-x86:3.0.2"
-
-    //chat
+    //chat : Real time chat depdendencies
     implementation 'io.grpc:grpc-okhttp:1.26.0'
     implementation 'io.grpc:grpc-protobuf-lite:1.26.0'
     implementation 'io.grpc:grpc-stub:1.26.0'
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
 
-    //log
+    //log : For debug logs
     implementation 'com.jakewharton.timber:timber:4.7.1'
 
-    // exoplayer
+    // Image loading
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // misc : Used for developing UI
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0'
+
+    // Host only libraries 
+
+    // Streamer : Libraries for pushing RTMP to streaming server for transcoding
+    implementation 'com.ksyun.media:libksylive-java:3.0.4'
+    implementation 'com.ksyun.media:libksylive-armv7a:3.0.4'
+    implementation "com.ksyun.media:libksylive-arm64:3.0.2"
+    implementation "com.ksyun.media:libksylive-x86:3.0.2"
+
+    // Viewers only libraries 
+
+    // exoplayer : Required for playback of streams
+    implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
+    implementation 'com.google.android.exoplayer:exoplayer-dash:2.9.6'
+    implementation 'com.google.android.exoplayer:extension-rtmp:2.9.6'
+    implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.6'
+
+}
+```
+
+**Host only**
+
+```gradle
+dependencies {
+
+    // Common libraries for both host and viewer
+
+    // coroutines : Use for Aync tasks
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6"
+
+    //dependency injection koin
+    api 'org.koin:koin-androidx-scope:2.1.5'
+    api 'org.koin:koin-androidx-viewmodel:2.1.5'
+
+    // lifecycle : For lifecycle aware components
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02"
+
+    // retrofit : Type safe HTTP client for Android
+    implementation "com.squareup.retrofit2:retrofit:2.6.1"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.1"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
+    //chat : Real time chat depdendencies
+    implementation 'io.grpc:grpc-okhttp:1.26.0'
+    implementation 'io.grpc:grpc-protobuf-lite:1.26.0'
+    implementation 'io.grpc:grpc-stub:1.26.0'
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+    //log : For debug logs
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Image loading
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // misc : Used for developing UI
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0'
+    implementation 'com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.5.0'
+
+    // Host only libraries 
+
+    // Streamer : Libraries for pushing RTMP to streaming server for transcoding
+    implementation 'com.ksyun.media:libksylive-java:3.0.4'
+    implementation 'com.ksyun.media:libksylive-armv7a:3.0.4'
+    implementation "com.ksyun.media:libksylive-arm64:3.0.2"
+    implementation "com.ksyun.media:libksylive-x86:3.0.2"
+
+}
+```
+
+**Viewer only**
+
+
+```gradle
+
+    // Common libraries for both host and viewer
+
+    // coroutines : Use for Aync tasks
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6"
+
+    //dependency injection koin
+    api 'org.koin:koin-androidx-scope:2.1.5'
+    api 'org.koin:koin-androidx-viewmodel:2.1.5'
+
+    // lifecycle : For lifecycle aware components
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-rc02"
+
+    // retrofit : Type safe HTTP client for Android
+    implementation "com.squareup.retrofit2:retrofit:2.6.1"
+    implementation "com.squareup.retrofit2:converter-gson:2.6.1"
+    implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
+    //chat : Real time chat depdendencies
+    implementation 'io.grpc:grpc-okhttp:1.26.0'
+    implementation 'io.grpc:grpc-protobuf-lite:1.26.0'
+    implementation 'io.grpc:grpc-stub:1.26.0'
+    implementation 'javax.annotation:javax.annotation-api:1.3.2'
+
+    //log : For debug logs
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+
+    // Image loading
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    kapt 'com.github.bumptech.glide:compiler:4.10.0'
+
+    // misc : Used for developing UI
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+    implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0'
+    implementation 'com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.5.0'
+
+    // Viewers only libraries 
+
+    // exoplayer : Required for playback of streams
     implementation 'com.google.android.exoplayer:exoplayer:2.9.6'
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.9.6'
     implementation 'com.google.android.exoplayer:extension-rtmp:2.9.6'
@@ -87,15 +232,9 @@ dependencies {
     implementation 'com.github.rubensousa:previewseekbar:2.0.0'
     implementation 'com.github.rubensousa:previewseekbar-exoplayer:2.8.1.0'
 
-    // misc
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-}
 ```
 
-> You can skip libraries which are already added in your `build.gradle`
+> You can skip libraries which are already added in your `build.gradle`. In case of any conflict, let us know and our team will check for comptability with SDK.
 
 Add `jniLibs` in your project. You can find pre-compiled `so` binaries in SDK folder. Copy them to `app/src/main/jniLibs`. In your `MainActivity` or before start using Live Streaming part, add following line of code 
 
@@ -109,16 +248,22 @@ Add `jniLibs` in your project. You can find pre-compiled `so` binaries in SDK fo
 
 BeLive SDK requires system permissions. To grant system permissions such as camera, microphone and others, We have added the following permissions in our `aar` library. No action is required on your side.
 
+> Note : Host requires additional permissions for live stream.
+
 ```xml
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Host and Viewer -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+   <!-- Host only -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
+
+    
 ```
 
 > For more information about permissions, see [official guide](https://developer.android.com/training/permissions/requesting.html)
@@ -153,7 +298,7 @@ android {
 ```
 
 
-> If you haven't deployed api, chat and streaming servers, you can use end points we provided in Sample app for testing purposes only.
+> If you haven't deployed api, chat and streaming servers, you can use `endpoints` that We have provided in Sample app for testing.
 
 Add following lines in `AndrodiManifes.xml` before closing `<application>` tag. 
 
@@ -185,15 +330,13 @@ Add following lines in `AndrodiManifes.xml` before closing `<application>` tag.
             android:name="sg.belive.sdk.isBuildHasSML"
             android:value="${isBuildHasSML}" />
 
-        <meta-data
-            android:name="sg.belive.sdk.isBuildHasSML"
-            android:value="${isBuildHasSML}" />
 
         <meta-data
             android:name="sg.belive.sdk.beliveSdkLicense"
             android:value="${beliveSdkLicense}" />
         <!-- end belive sdk configuration here-->
 
+        <!-- Optional Facebook settings for share feature -->
         <!--
         <provider
             android:name="com.facebook.FacebookContentProvider"
@@ -216,7 +359,7 @@ To enable Facebook sharing, add Facebook App Id in `strings.xml` and uncomment F
 <string name="facebook_app_id">REPLACE_HERE</string>
 ```
 
-> Without adding Facebook App Id and relevant lines in manifest, app will crash when user tries to share a stream
+> Without adding Facebook App Id and relevant lines in manifest, app will crash when user tries to share a stream. Alternatively, we also provide default Android sharesheet.
 
 ### Step 4: SDK feature configuration
 
@@ -227,14 +370,18 @@ BeLive SDK has plenty of features. By default all features are enabled. You can 
   "features": {
     "watcherList": true,
     "beautyFilter": true,
-    "floatingText": true, 
+    "floatingText": true,
     "shareButton": true,
     "streamQuality": 1,
     "streamPassword": true,
-    "allowPictureInPicture": true
+    "allowPictureInPicture": true,
+    "shoppingCart": true,
+    "obs": false
   }
 }
 ```
+
+> Note : `belive-configuration.json` is required for both Host and Viewer.
 
 **StreamQuality : 1** will show options for host to choose among SD, HD or FHD in prelive screen. For other options refer to below object. 
 
@@ -249,31 +396,54 @@ StreamQualityOptions{
 
 **allowPictureInPicture: true** enables picture-in-picture mode.
 
+Other options are self-explanatory. For **How to use OBS**, get in touch with our business team to get detailed guide.
+
 After completing all steps you will see following project structure 
 
 ![project structure](../images/project_struct.png)
 
-## Start your first Live Stream
+## [Host] Start your first Live Stream
 
 BeLive SDK adds live streaming feature to your client app with few lines of code. To start or watch your first live stream, do the following steps. 
 
 ### Step 1: Initialize the BeLive SDK in your app
 
-`BelivePlayerUtil` must be initialized when a client app is launched. It is recommended to initialize it in the `onCreate()` method of the `Application` instance.
+`BelivePlayerUtil` must be initialized before iniating any connection with BeLive SDK. It is recommended to initialize it in the `onCreate()` method of the main `Application` or `Activity`. Find below an example of initializing workspace in MainActivity.
 
 ```kotlin
-class MainApplication : Application() {
+class MainActivity : AppCompatActivity() {
 
-    override fun onCreate() {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate()
 
         BelivePlayerUtil.initWorkspace(this)
     }
 }
 ```
-In `MainActivity` class, initialze BeLiveSDK by providing `userId`, `userName`, `displayName` and `userAvatarUrl`. 
 
-> Note that it is must to initialze before starting live stream activity
+There are couple of additional steps that needs to be done before we can start using functionality of SDK. First of all, we have to load native library which contains license file check, after that we have to initialize provider and ImageLoader. The main reason for using external ImageLoader is to use consisent settings of Glide (third party image loading ibrary).
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate()
+
+        BelivePlayerUtil.initWorkspace(this)
+        System.loadLibrary("native-lib")
+        val provider = BeliveSdkInitProvider(this.applicationContext)
+        provider.initBeLiveSdk(object: BeliveSdkInitProvider.ISDKInitStatus{
+            override fun onStatus(status: String, error: BeliveException?) {
+            }
+        })
+        LbsImageLoaderUtil.registerImageLoader(ImageLoaderImpl())
+    }
+}
+```
+
+In `MainActivity` class, initialze BeLiveSDK by providing `userId`, `userName`, `displayName` and relative `userAvatarUrl`. 
+
+> Note that it is must to initialze SDK before starting live stream activities.
 
 ```kotlin
 
@@ -306,6 +476,47 @@ private fun initBeliveSdk() {
                         else -> { }
                     }
                 }
+            }).setBeliveSdkLiveStreamCallback(object : BlsLiveStreamCallback {
+
+                override fun onObsCreated(slug: String) {
+                        // OBS stream key
+                }
+                override fun onDuration(duration: Long) {
+                    // duration information for stream
+                }
+                override fun onEndStreamError(code: Int, message: String) {
+
+                    // Error information related to ending stream on Host side
+                }
+                override fun onEndStreamSuccess(slug: String, statistics: BlsLiveStreamStatistics) {
+
+                }
+                override fun onJoinStreamSuccess() {
+
+                    // Viwer has joined live/recorded stream sucessfully
+                }
+                override fun onSaveStreamError(code: Int, message: String) {
+
+                    // Host has failed to save stream
+                }
+                override fun onSaveStreamSuccess() {
+                }
+                override fun onStartStreamError(code: Int, message: String) {
+                }
+                override fun onStartStreamSuccess(slug: String) {
+                }
+                override fun onStatistics(statistics: BlsLiveStreamStatistics) {
+
+                    // Get statistics update very 20-30 seconds (view count etc.)
+
+                }
+                override fun onStreamError(reason: Int) {
+                }
+                override fun onViewerJoined(it: List<ViewerInfo>) {
+                }
+
+                override fun onViewerLeft(it: ViewerInfo) {
+                }
             }).build().init()
     }
 
@@ -327,7 +538,7 @@ btnGoLive.setOnClickListener {
 
 > Note `customShareTextAndUrl` is optional. Leave it empty for using default behavior of SDK
 
-See screenshots below for default UI.
+See screenshots below for default UI. For custom UI developement, visit [Advance Guide with Custom UI for Android](Advance.md)
 
 ![prelive live android](../images/pre_live.jpg) | ![start live android](../images/watch_live.jpg)
 
@@ -356,15 +567,23 @@ Find below a list of callback methods.
 
 ```kotlin
 interface BlsLiveStreamCallback {
+     /*obs*/
+    fun onObsCreated(slug: String)
+
     fun onStartStreamSuccess(slug: String)  // for host. User has started stream
+    fun onDuration(duration: Long) // current duration of the stream
     fun onJoinStreamSuccess() // for viewer only. User has joined stream
     fun onStreamError(reason: Int) // for both host and viewer
-    fun onJoinChatSuccess(channelId: String) // for both host and viewer. User has joined chat channel
-    fun onJoinChatError(reason: Int)  // for both host and viewer
     fun onStatistics(statistics: BlsLiveStreamStatistics) // for both host and viewer. Update of view count and like count.
     fun onShareStream(shareTo: Int) // for both host and viewer
     fun onEndStreamSuccess(slug: String, statistics: BlsLiveStreamStatistics) // for host only. User has ended live stream
-    fun onSaveStream(isSaved: Boolean) // for host only. User has saved live stream
+    fun onEndStreamError(code: Int, message: String) // for host only. Host has failed to end live stream
+    fun onSaveStream(isSaved: Boolean) // for host only. Host has saved live stream
+    fun onSaveStreamError(code: Int, message: String) // for host only. Host has failed to save live stream
+    fun onStartStreamSuccess(slug: String) // for host only.
+    fun onStartStreamError(code: Int, message: String) // for host only. Failed to start stream
+    fun onViewerJoined(it: List<ViewerInfo>)
+    fun onViewerLeft(it: ViewerInfo)
 }
 ```
 

@@ -29,7 +29,7 @@ Drag and drop `BeLiveSDK.framework` in your Xcode Project. Refer to below screen
 
 Add `SDKConfiguration.plist` in your project. We have provide a sample `plist` file in Sample project.
 
-> If you haven't deployed api, chat and streaming servers, you can use end points we provided in Sample app for testing purposes only. 
+> If you haven't deployed api, chat and streaming servers, you can use `endpoints` that we have provided in Sample app for testing. 
 
 BeLive SDK has plenty of features. By default all features are enabled. You can disable them in `features` section of `SDKConfiguration.plist`. See screenshot below
 
@@ -41,44 +41,46 @@ BeLive SDK has plenty of features. By default all features are enabled. You can 
 2. Open `Podfile`
 3. In the opened Podfile, include following pods under your project target and run `pod install` command.
 
-```bash
-   #MARK: - Network
-    pod 'Alamofire', '~> 4.9.1'
-    pod 'AlamofireObjectMapper', '~> 5.2.1'
-    pod 'SDWebImage'
-    
-    #MARK: - Util
-    pod 'Bugly'
-    pod 'GPUImage'
-    pod 'ObjectMapper'
-    pod 'PromiseKit'
-    pod 'IQKeyboardManagerSwift'
-    pod 'Toast-Swift'
-    pod 'KVOController'
-    pod 'lottie-ios', '~> 3.1.3'
-    pod 'SnapKit'
-    pod 'SVProgressHUD'
-    pod 'SwiftyPlistManager'
-    pod 'libksygpulive'
-    
-    #MARK: - gRPC
-    pod 'SwiftGRPC'
-    pod 'SwiftNIO'
-    pod 'SwiftNIOHTTP1'
-    pod 'gRPC'
-    pod 'pop'
+**Host and Viewer**
 
-    #MARK: - Rx
-    pod 'RxSwift'
-    pod 'RxCocoa'
-    pod 'RxRelay'
-    pod 'RxAppState'
-    pod 'RxReachability'
+> Note : Host and Viewer use same libraries as of now.
+
+```bash
+
+   #MARK: - Network
+    pod 'Alamofire', '4.9.1'
+    pod 'AlamofireObjectMapper', '5.2.1'
+    pod 'SDWebImage', '5.11.0'
+     
+    #MARK: - Live Streaming
+    pod 'libksygpulive', '3.0.4'
+    pod 'GPUImage', '0.1.7'  
+
+    #MARK: - Chat - gRPC
+    pod 'SwiftGRPC', '0.11.0'
+    pod 'gRPC', '1.24.2'
+    pod 'pop', '1.0.12'
+
+    #MARK: - Util - For UI
+    pod 'ObjectMapper', '3.5.3'
+    pod 'PromiseKit', '6.13.1'
+    pod 'IQKeyboardManagerSwift', '6.5.6'
+    pod 'Toast-Swift', '5.0.1'
+    pod 'SnapKit', '5.0.1'
+    pod 'SVProgressHUD', '2.2.5'
+    pod 'SwiftyPlistManager', '1.0.2'
+
+    #MARK: - Reactive extensions - Rx
+    pod 'RxSwift', '5.1.2'
+    pod 'RxCocoa', '5.1.1'
+    pod 'RxRelay', '5.1.1'
+    pod 'RxAppState', '1.6.0'
+    pod 'RxReachability', '1.1.0'
     
-    #MARK: - CryptoSwift
+    #MARK: - License - CryptoSwift
     pod 'CryptoSwift', '~> 1.0'
 
-    #MARK: Social (optional)
+    #MARK: Social sharing (optional)
     pod 'FBSDKCoreKit'
     pod 'FBSDKLoginKit'
     pod 'FBSDKShareKit'
@@ -251,6 +253,10 @@ Use following snippet of code for watching live stream
 Screenshot of built UI
 
 ![Watch Live Stream 2](../images/ios_watch_live.png) | ![PIP Mode](../images/ios_pip_mode.png)
+
+## Carthage Support
+
+BeLive SDK supports carthage as well. Our iOS team will help you to get started with it.
 
 ## Custom UI
 
