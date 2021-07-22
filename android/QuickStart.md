@@ -60,7 +60,7 @@ dependencies {
 
     // Common libraries for both host and viewer
 
-    // coroutines : Use for Aync tasks
+    // coroutines : Use for Async tasks
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.6"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.6"
 
