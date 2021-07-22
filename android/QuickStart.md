@@ -95,10 +95,8 @@ dependencies {
 
     // misc : Used for developing UI
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0'
-    implementation 'com.facebook.fbui.textlayoutbuilder:textlayoutbuilder:1.5.0'
 
     // Host only libraries 
 
@@ -115,8 +113,6 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-dash:2.9.6'
     implementation 'com.google.android.exoplayer:extension-rtmp:2.9.6'
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.9.6'
-    implementation 'com.github.rubensousa:previewseekbar:2.0.0'
-    implementation 'com.github.rubensousa:previewseekbar-exoplayer:2.8.1.0'
 
 }
 ```
