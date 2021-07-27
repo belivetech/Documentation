@@ -80,7 +80,7 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
-    //chat : Real time chat depdendencies
+    //chat : Real time chat dependencies
     implementation 'io.grpc:grpc-okhttp:1.26.0'
     implementation 'io.grpc:grpc-protobuf-lite:1.26.0'
     implementation 'io.grpc:grpc-stub:1.26.0'
