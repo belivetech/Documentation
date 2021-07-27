@@ -43,7 +43,7 @@ BeLive SDK has plenty of features. By default all features are enabled. You can 
 
 **Host and Viewer**
 
-> Note : Host and Viewer use same libraries as of now.
+> Note : Host and Viewer use same libraries as of now. If HLS playback is preferred, then we won't be needing `Live Streaming` libraries for viewer side.
 
 ```bash
 
@@ -52,7 +52,7 @@ BeLive SDK has plenty of features. By default all features are enabled. You can 
     pod 'AlamofireObjectMapper', '5.2.1'
     pod 'SDWebImage', '5.11.0'
      
-    #MARK: - Live Streaming
+    #MARK: - Live Streaming (If HLS playback is preferred, then we won't be needing Live Streaming libraries for Viewer side).
     pod 'libksygpulive', '3.0.4'
     pod 'GPUImage', '0.1.7'  
 
