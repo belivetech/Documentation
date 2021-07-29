@@ -193,10 +193,13 @@ Official Gson License :  https://github.com/google/gson/blob/master/LICENSE
 
 Official Swiperefreshlayout (Android official library): https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
 
+> Note : Swiperefreshlayout is used for Shop catalog UI
+
 Official AdapterDelegates Github :  https://github.com/sockeqwe/AdapterDelegates
 
 Official AdapterDelegates License : https://github.com/sockeqwe/AdapterDelegates/blob/master/LICENSE
 
+> Note : AdapterDelegates is used Chat list UI
 
 ### ExoPlayer (Android Media Player)
 
