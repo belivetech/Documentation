@@ -80,11 +80,14 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
-    //chat : Real time chat dependencies
+    //chat : Real time chat depdendencies 
+    // In-house
     implementation 'io.grpc:grpc-okhttp:1.26.0'
     implementation 'io.grpc:grpc-protobuf-lite:1.26.0'
     implementation 'io.grpc:grpc-stub:1.26.0'
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    // Agora
+    implementation 'com.github.agorabuilder:rtm-sdk:1.4.3'
 
     //log : For debug logs
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -93,7 +96,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 
-    // misc : Used for developing UI
+    // misc : Utility libraries for UI
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0'
@@ -144,11 +147,14 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
-    //chat : Real time chat depdendencies
+    //chat : Real time chat depdendencies 
+    // In-house
     implementation 'io.grpc:grpc-okhttp:1.26.0'
     implementation 'io.grpc:grpc-protobuf-lite:1.26.0'
     implementation 'io.grpc:grpc-stub:1.26.0'
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    // Agora
+    implementation 'com.github.agorabuilder:rtm-sdk:1.4.3'
 
     //log : For debug logs
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -157,7 +163,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 
-    // misc : Used for developing UI
+    // misc : Utility libraries for UI 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0'
@@ -200,11 +206,14 @@ dependencies {
     implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
-    //chat : Real time chat depdendencies
+    //chat : Real time chat depdendencies 
+    // In-house
     implementation 'io.grpc:grpc-okhttp:1.26.0'
     implementation 'io.grpc:grpc-protobuf-lite:1.26.0'
     implementation 'io.grpc:grpc-stub:1.26.0'
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    // Agora
+    implementation 'com.github.agorabuilder:rtm-sdk:1.4.3'
 
     //log : For debug logs
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -213,7 +222,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.10.0'
     kapt 'com.github.bumptech.glide:compiler:4.10.0'
 
-    // misc : Used for developing UI
+    // misc : Utility libraries for UI 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'com.hannesdorfmann:adapterdelegates4-kotlin-dsl:4.2.0'

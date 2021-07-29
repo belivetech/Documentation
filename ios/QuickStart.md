@@ -56,10 +56,13 @@ BeLive SDK has plenty of features. By default all features are enabled. You can 
     pod 'libksygpulive', '3.0.4'
     pod 'GPUImage', '0.1.7'  
 
-    #MARK: - Chat - gRPC
+    #MARK: - Chat - in-House (gRPC)
     pod 'SwiftGRPC', '0.11.0'
     pod 'gRPC', '1.24.2'
     pod 'pop', '1.0.12'
+
+    #MARK: - Chat - Agora RTM
+    pod 'AgoraRtm_iOS', '1.4.3'
 
     #MARK: - Util - For UI
     pod 'ObjectMapper', '3.5.3'
@@ -78,7 +81,7 @@ BeLive SDK has plenty of features. By default all features are enabled. You can 
     pod 'RxReachability', '1.1.0'
     
     #MARK: - License - CryptoSwift
-    pod 'CryptoSwift', '~> 1.0'
+    pod 'CryptoSwift', '1.3.8'
 
     #MARK: Social sharing (optional)
     pod 'FBSDKCoreKit'
