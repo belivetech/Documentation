@@ -1,178 +1,181 @@
 ## Third party libraries used by BeLive iOS SDK
 
-### Viewer 
+### Viewer
 
 **Viewer only**
 
-> Live stream libraries are not required if HLS playback is preferred. It is omitted from this document
+> Live stream libraries are not required if HLS playback is preferred. It is omitted from this document.
 
 ```bash
+#MARK: - Network
+pod 'Alamofire', '4.9.1'
+pod 'AlamofireObjectMapper', '5.2.1'
+pod 'SDWebImage', '5.11.0'
 
-   #MARK: - Network
-    pod 'Alamofire', '4.9.1'
-    pod 'AlamofireObjectMapper', '5.2.1'
-    pod 'SDWebImage', '5.11.0'
+#MARK: - Chat - in-House (gRPC)
+pod 'SwiftGRPC', '0.11.0'
+pod 'gRPC', '1.24.2'
+pod 'pop', '1.0.12'
 
-    #MARK: - Chat - in-House (gRPC)
-    pod 'SwiftGRPC', '0.11.0'
-    pod 'gRPC', '1.24.2'
-    pod 'pop', '1.0.12'
+#MARK: - Chat - Agora RTM
+pod 'AgoraRtm_iOS', '1.4.3'
 
-    #MARK: - Chat - Agora RTM
-    pod 'AgoraRtm_iOS', '1.4.3'
+#MARK: - Util - For UI
+pod 'ObjectMapper', '3.5.3'
+pod 'PromiseKit', '6.13.1'
+pod 'IQKeyboardManagerSwift', '6.5.6'
+pod 'Toast-Swift', '5.0.1'
+pod 'SnapKit', '5.0.1'
+pod 'SVProgressHUD', '2.2.5'
+pod 'SwiftyPlistManager', '1.0.2'
 
-    #MARK: - Util - For UI
-    pod 'ObjectMapper', '3.5.3'
-    pod 'PromiseKit', '6.13.1'
-    pod 'IQKeyboardManagerSwift', '6.5.6'
-    pod 'Toast-Swift', '5.0.1'
-    pod 'SnapKit', '5.0.1'
-    pod 'SVProgressHUD', '2.2.5'
-    pod 'SwiftyPlistManager', '1.0.2'
+#MARK: - Reactive extensions - Rx
+pod 'RxSwift', '5.1.2'
+pod 'RxCocoa', '5.1.1'
+pod 'RxRelay', '5.1.1'
+pod 'RxAppState', '1.6.0'
+pod 'RxReachability', '1.1.0'
 
-    #MARK: - Reactive extensions - Rx
-    pod 'RxSwift', '5.1.2'
-    pod 'RxCocoa', '5.1.1'
-    pod 'RxRelay', '5.1.1'
-    pod 'RxAppState', '1.6.0'
-    pod 'RxReachability', '1.1.0'
-    
-    #MARK: - License - CryptoSwift
-    pod 'CryptoSwift', '1.3.8'
+#MARK: - License - CryptoSwift
+pod 'CryptoSwift', '1.3.8'
 ```
 
 ### Network and Image Loading
 
-```
-   #MARK: - Network
-    pod 'Alamofire', '4.9.1'
-    pod 'AlamofireObjectMapper', '5.2.1'
-    pod 'SDWebImage', '5.11.0'
-     
-
+```bash
+#MARK: - Network
+pod 'Alamofire', '4.9.1'
+pod 'AlamofireObjectMapper', '5.2.1'
+pod 'SDWebImage', '5.11.0'
 ```
 
-Official Alamofire Github : https://github.com/Alamofire/Alamofire
+Alamofire is an HTTP networking library written in Swift. BeLive SDK uses Alamofire to communicate with RESTful APIs of BeLive backend servers.
 
-Official Alamofire License : https://github.com/Alamofire/Alamofire/blob/master/LICENSE
+- Official Alamofire Github : https://github.com/Alamofire/Alamofire
+- Official Alamofire License : https://github.com/Alamofire/Alamofire/blob/master/LICENSE
 
-Official AlamofireObjectMapper Github : https://github.com/tristanhimmelman/AlamofireObjectMapper
+AlamofireObjectMapper is an Alamofire extension which converts JSON response data into swift objects using ObjectMapper. BeLive SDK requires AlamofireObjectMapper to process API responses.
 
-Official AlamofireObjectMapper License : https://github.com/tristanhimmelman/AlamofireObjectMapper/blob/master/LICENSE
+- Official AlamofireObjectMapper Github : https://github.com/tristanhimmelman/AlamofireObjectMapper
+- Official AlamofireObjectMapper License : https://github.com/tristanhimmelman/AlamofireObjectMapper/blob/master/LICENSE
 
-Official SDWebImage Github : https://github.com/SDWebImage/SDWebImage
+SDWebImage is an asynchronous image downloader with cache support as a UIImageView category. BeLive SDK requires SDWebImage to process image resources.
 
-Official SDWebImage License : https://github.com/SDWebImage/SDWebImage/blob/master/LICENSE
-
+- Official SDWebImage Github : https://github.com/SDWebImage/SDWebImage
+- Official SDWebImage License : https://github.com/SDWebImage/SDWebImage/blob/master/LICENSE
 
 ### Real-time chat
 
 BeLive has developed in-house chat based on gRPC. We have an alternative option for chat which is developed using Agora RTM SDK. Depending on use case, we can enable and package one of the chat platform with SDK.
 
-```
-    #MARK: - Chat - in-House (gRPC)
-    pod 'SwiftGRPC', '0.11.0'
-    pod 'gRPC', '1.24.2'
-    pod 'pop', '1.0.12'
-```
+_In-house chat_
 
-*In-house chat*
-
-Official gRPC Github : https://github.com/grpc/grpc-swift
-
-Official gRPC License : https://github.com/grpc/grpc-swift/blob/main/LICENSE
-
-*Agora Chat*
-
-```
-    #MARK: - Chat - Agora RTM
-    pod 'AgoraRtm_iOS', '1.4.3'
-
-
+```bash
+#MARK: - Chat - in-House (gRPC)
+pod 'SwiftGRPC', '0.11.0'
+pod 'gRPC', '1.24.2'
+pod 'pop', '1.0.12'
 ```
 
-Official Agora RTM site : https://docs.agora.io/en/Real-time-Messaging/messaging_ios?platform=iOS
-> Note : It's a paid service
+In gRPC, a client application can directly call a method on a server application on a different machine as if it were a local object, making it easier for you to create distributed applications and services. BeLive in-house chat feature is dependent on the gRPC framework.
 
+- Official gRPC Github : https://github.com/grpc/grpc-swift
+- Official gRPC License : https://github.com/grpc/grpc-swift/blob/main/LICENSE
 
+_Agora Chat_
+
+```bash
+#MARK: - Chat - Agora RTM
+pod 'AgoraRtm_iOS', '1.4.3'
+```
+
+Agora is a RTM (Real-time Messaging) SDK used to send and receive messages. Agora is required for alternative implementation of real-time chat feature.
+
+- Official Agora RTM site : https://docs.agora.io/en/Real-time-Messaging/messaging_ios?platform=iOS
+
+> Note : Agora is a paid service
 
 ### Utility Libraries for iOS
 
-```
-    #MARK: - Util - For UI
-    pod 'ObjectMapper', '3.5.3'
-    pod 'PromiseKit', '6.13.1'
-    pod 'IQKeyboardManagerSwift', '6.5.6'
-    pod 'Toast-Swift', '5.0.1'
-    pod 'SnapKit', '5.0.1'
-    pod 'SVProgressHUD', '2.2.5'
-    pod 'SwiftyPlistManager', '1.0.2'
-
-
+```bash
+#MARK: - Util - For UI
+pod 'ObjectMapper', '3.5.3'
+pod 'PromiseKit', '6.13.1'
+pod 'IQKeyboardManagerSwift', '6.5.6'
+pod 'Toast-Swift', '5.0.1'
+pod 'SnapKit', '5.0.1'
+pod 'SVProgressHUD', '2.2.5'
+pod 'SwiftyPlistManager', '1.0.2'
 ```
 
-Official ObjectMapper Github (Converting model to and from JSON) : https://github.com/tristanhimmelman/ObjectMapper
+ObjectMapper converts your model objects (classes and structs) to and from JSON. BeLive SDK requires ObjectMapper to process API responses.
 
-Official ObjectMapper License : https://github.com/tristanhimmelman/ObjectMapper/blob/master/LICENSE
+- Official ObjectMapper Github: https://github.com/tristanhimmelman/ObjectMapper
+- Official ObjectMapper License : https://github.com/tristanhimmelman/ObjectMapper/blob/master/LICENSE
 
-Official PromiseKit Github (Use for asynchronous tasks) : https://github.com/mxcl/PromiseKit
+PromiseKit implements Promises for Swift & ObjC. PromiseKit is used for asynchronous programming in BeLive SDK.
 
-Official PromiseKit License : https://github.com/mxcl/PromiseKit/blob/master/LICENSE
+- Official PromiseKit Github: https://github.com/mxcl/PromiseKit
+- Official PromiseKit License: https://github.com/mxcl/PromiseKit/blob/master/LICENSE
 
-Official IQKeyboardManagerSwift Github (For handling of keyboard in chat UI) : https://github.com/hackiftekhar/IQKeyboardManager
+IQKeyboardManagerSwift is a codeless drop-in universal library which prevents issues of keyboard sliding up and cover UITextField/UITextView. IQKeyboardManagerSwift is used for handling of keyboard in chat UI in BeLive SDK (smart keyboard).
 
-Official IQKeyboardManagerSwift License : https://github.com/hackiftekhar/IQKeyboardManager/blob/master/LICENSE.md
+- Official IQKeyboardManagerSwift Github: https://github.com/hackiftekhar/IQKeyboardManager
+- Official IQKeyboardManagerSwift License: https://github.com/hackiftekhar/IQKeyboardManager/blob/master/LICENSE.md
 
-Official Toast-Swift Github (Used for toast notification in UIView class) : https://github.com/scalessec/Toast-Swift
+Toast-Swift is a Swift extension that adds toast notifications to the UIView object class. Toast-Swift is used to implement toast notification in BeLive SDK.
 
-Official Toast-Swift License : https://github.com/scalessec/Toast-Swift/blob/master/LICENSE
+- Official Toast-Swift Github: https://github.com/scalessec/Toast-Swift
+- Official Toast-Swift License: https://github.com/scalessec/Toast-Swift/blob/master/LICENSE
 
-Official SnapKit Github (Utility library for auto-layout) : https://github.com/SnapKit/SnapKit
+SnapKit is a DSL (Domain Specific Language) to make Auto Layout easy on both iOS and OS X. SnapKit is used to support Autolayout by code in BeLive SDK.
 
-Official SnapKit License : https://github.com/SnapKit/SnapKit/blob/develop/LICENSE
+- Official SnapKit Github: https://github.com/SnapKit/SnapKit
+- Official SnapKit License: https://github.com/SnapKit/SnapKit/blob/develop/LICENSE
 
-Official SVProgressHUD Gitbub (Utility UI library for displaying progress) : https://github.com/SVProgressHUD/SVProgressHUD
+SVProgressHUD is a clean and lightweight progress HUD for your iOS and tvOS app. SVProgressHUD is used to display progress on UI in BeLive SDK.
 
-Official SVProgressHUD License : https://github.com/SVProgressHUD/SVProgressHUD/blob/master/LICENSE
+- Official SVProgressHUD Gitbub: https://github.com/SVProgressHUD/SVProgressHUD
+- Official SVProgressHUD License: https://github.com/SVProgressHUD/SVProgressHUD/blob/master/LICENSE
 
-Official SwiftyPlistManager Github (Used for plist data management to manage SDK configurations) : https://github.com/rebeloper/SwiftyPlistManager
+SwiftyPlistManager is a lightweight plist data management framework for iOS 10.3+. SwiftyPlistManager is used for plist data management to manage SDK configurations.
 
-Official SwiftyPlistManager License : https://github.com/rebeloper/SwiftyPlistManager/blob/master/LICENSE
+- Official SwiftyPlistManager Github: https://github.com/rebeloper/SwiftyPlistManager
+- Official SwiftyPlistManager License : https://github.com/rebeloper/SwiftyPlistManager/blob/master/LICENSE
 
 ### Reactive Extensions (Rx)
 
+```bash
+#MARK: - Reactive extensions - Rx
+pod 'RxSwift', '5.1.2'
+pod 'RxCocoa', '5.1.1'
+pod 'RxRelay', '5.1.1'
+pod 'RxAppState', '1.6.0'
+pod 'RxReachability', '1.1.0'
 ```
-    #MARK: - Reactive extensions - Rx
-    pod 'RxSwift', '5.1.2'
-    pod 'RxCocoa', '5.1.1'
-    pod 'RxRelay', '5.1.1'
-    pod 'RxAppState', '1.6.0'
-    pod 'RxReachability', '1.1.0'
 
-```
+RxSwift is used for reactive programming in iOS platforms. Async tasks are implemented via Reactive Extensions (Rx) dependencies in BeLive SDK.
 
-Official Rx Github (Use for asynchronous programming): https://github.com/ReactiveX/RxSwift
-
-Official Rx License : https://github.com/ReactiveX/RxSwift/blob/main/LICENSE.md
+- Official Rx Github: https://github.com/ReactiveX/RxSwift
+- Official Rx License : https://github.com/ReactiveX/RxSwift/blob/main/LICENSE.md
 
 ### License (CryptoSwift)
 
+```bash
+#MARK: - License - CryptoSwift
+pod 'CryptoSwift', '1.3.8'
 ```
-    #MARK: - License - CryptoSwift
-    pod 'CryptoSwift', '1.3.8'
 
-```
+CryptoSwift is a library of crypto related functions and helpers for Swift implemented in Swift. CryptoSwift is used for license verification of SDK.
 
-Official CryptoSwift Github (Use for license verificaiton of SDK) : https://github.com/krzyzanowskim/CryptoSwift
+- Official CryptoSwift Github: https://github.com/krzyzanowskim/CryptoSwift
 
-Official CryptoSwift License : https://github.com/krzyzanowskim/CryptoSwift/blob/master/LICENSE
+- Official CryptoSwift License : https://github.com/krzyzanowskim/CryptoSwift/blob/master/LICENSE
 
-### Appendix 
+### Appendix
 
-In case of `non-HLS playback such as RTMP, FLV etc.`, We use KSYMediaPlayer 
+In case of `non-HLS playback such as RTMP, FLV etc.`, BeLive SDK uses KSYMediaPlayer.
 
-Official KSYMediaPlayer Github : https://github.com/ksvc/KSYMediaPlayer_iOS
+- Official KSYMediaPlayer Github : https://github.com/ksvc/KSYMediaPlayer_iOS
 
-Official KSYMediaPlayer License : https://github.com/ksvc/KSYMediaPlayer_iOS/blob/master/LICENSE
-
-
+- Official KSYMediaPlayer License : https://github.com/ksvc/KSYMediaPlayer_iOS/blob/master/LICENSE
