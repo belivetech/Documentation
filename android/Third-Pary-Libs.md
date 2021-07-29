@@ -29,11 +29,14 @@
     implementation "com.squareup.okhttp3:logging-interceptor:3.10.0"
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
 
-    //chat : Real time chat depdendencies
+    //chat : Real time chat depdendencies 
+    // In-house
     implementation 'io.grpc:grpc-okhttp:1.26.0'
     implementation 'io.grpc:grpc-protobuf-lite:1.26.0'
     implementation 'io.grpc:grpc-stub:1.26.0'
     implementation 'javax.annotation:javax.annotation-api:1.3.2'
+    // Agora
+    implementation 'com.github.agorabuilder:rtm-sdk:1.4.3'
 
     //log : For debug logs
     implementation 'com.jakewharton.timber:timber:4.7.1'
@@ -127,13 +130,14 @@ Official Stetho License : https://github.com/facebook/stetho/blob/master/LICENSE
 
 ### Realtime-chat 
 
-BeLive has developed in-house chat based on gRPC. We have an alternative option for chat which is developed using Agora RTM SDK. Depending on use case, we can enable and package one of the chat with SDK.
+BeLive has developed in-house chat based on gRPC. We have an alternative option for chat which is developed using Agora RTM SDK. Depending on use case, we can enable and package one of the chat platform with SDK.
 
 *In-house chat*
 
 
 ```
-    //chat : Real time chat depdendencies
+    //chat : Real time chat depdendencies 
+    // In-house
     implementation 'io.grpc:grpc-okhttp:1.26.0'
     implementation 'io.grpc:grpc-protobuf-lite:1.26.0'
     implementation 'io.grpc:grpc-stub:1.26.0'
@@ -146,6 +150,11 @@ Official gRPC Github : https://github.com/grpc/grpc-java
 Official gRPC License : https://github.com/grpc/grpc-java/blob/master/LICENSE
 
 *Agora Chat*
+
+```
+    // Agora
+    implementation 'com.github.agorabuilder:rtm-sdk:1.4.3'
+```
 
 Official Agora RTM site : https://docs.agora.io/en/Real-time-Messaging/messaging_android?platform=Android
 > Note : It's a paid service
