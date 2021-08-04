@@ -44,6 +44,7 @@ dependencies {
     implementation (name:'belive-streaming-release', ext:'aar')
     implementation (name:'beliveplayer-release', ext:'aar')
     implementation (name:'belive-core-release', ext:'aar')
+    implementation (name:'common-release', ext:'aar')
 
 }
 
@@ -53,7 +54,7 @@ For **Host** only, you can exclude `beliveplayer-release` aar library but for `V
 
 BeLive Android SDK is using open source libraries. Add following depdendcies to app level `build.gradle`
 
-For detailed explanation about Third party libraries used in SDK, visit [Third Pary Librarys](Third-Party-Libs.md)
+For detailed explanation about Third party libraries used in SDK, visit [Third Party Libraries](Third-Party-Libs.md)
 
 **Host and Viewer**
 
