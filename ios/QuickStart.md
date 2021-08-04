@@ -45,7 +45,7 @@ BeLive SDK has plenty of features. By default all features are enabled. You can 
 
 > Note : Host and Viewer use same libraries as of now. If HLS playback is preferred, then we won't be needing `Live Streaming` libraries for viewer side.
 
-For detailed explanation about Third party libraries used in SDK, visit [Third Pary Librarys](Third-Party-Libs.md)
+For detailed explanation about Third party libraries used in SDK, visit [Third Party Libraries](Third-Party-Libs.md)
 
 ```bash
 
