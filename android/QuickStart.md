@@ -49,7 +49,7 @@ dependencies {
 }
 
 ```
-For **Host** only, you can exclude `beliveplayer-release` aar library but for `Viewer` implementation, you will need all three `aar` libraries.
+For **Host** only, you can exclude `beliveplayer-release` aar library but for `Viewer` implementation, you will need all `aar` libraries.
 
 
 BeLive Android SDK is using open source libraries. Add following depdendcies to app level `build.gradle`
