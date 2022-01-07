@@ -52,8 +52,8 @@ SDK Package contains following core components
 - Docker image for easy deployment
 - Javascript plugin for custom UI integration in your existing Web App
 
-## Ready-made UI
-Our SDK provides ready-to-use live stream UI for any mobile device screen size. We provide customization option as per client's need and usage. Refer to below screenshots for example UI/UX.
+## Customizable UI
+Our SDK provides ready-to-use live stream UI for any mobile device screen size. We also provide customization option as per client's need and usage. Refer to below screenshots for example UI/UX.
 
 ![Live Stream UI](images/live_screen_ui.png)
 
