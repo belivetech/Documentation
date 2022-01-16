@@ -26,7 +26,6 @@ BeLive SDK provides following core features with flexibility to extend and add-o
 - Live chat for interactivity during live stream
 - Per minute stream statistics (live view count and likes) 
 - Watcher list with ability to view profile and photo 
-- Live shopping feature with unlimited shop items / products
 - Multiple resolutions supports such as SD, HD and Full HD 
 - Stream Password feature for enhanced security and personalization
 - Content Management Sytem to manage stream and live shopping
