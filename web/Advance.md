@@ -1,3 +1,0 @@
-# Advance Guide
-
-*In progress*
