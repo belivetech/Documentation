@@ -4,4 +4,4 @@ BeLive SDK is an end-to-end live streaming solution with ready-made UI and conte
 
 Refer to our official documentation site for more details 
 
-[BeLive Interactive Live Streaming SDK](https://sdk-docs.belive.tech/)
+[BeLive Interactive Live Streaming SDK](https://sdk-docs.belive.technology/)
